@@ -20,8 +20,9 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/atoms/ui/tooltip";
+import { Link } from "expo-router";
 import * as React from "react";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import Animated, {
   FadeInUp,
   FadeOutDown,
@@ -112,6 +113,12 @@ export default function Screen() {
           >
             <Text>Update</Text>
           </Button>
+
+          <Link href="/profile" asChild>
+            <TouchableOpacity>
+              <Text>Profile</Text>
+            </TouchableOpacity>
+          </Link>
         </CardFooter>
       </Card>
     </View>

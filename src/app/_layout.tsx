@@ -1,7 +1,6 @@
 import "@/styles/globals.css";
 
 import { NAV_THEME } from "@/components/atoms/Theme";
-import { ThemeToggle } from "@/components/atoms/ThemeToggle";
 import { useColorScheme } from "@/hooks/customs/useColorScheme";
 import { setAndroidNavigationBar } from "@/utils/androidNavigationBar";
 import {
@@ -43,14 +42,8 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-      <Stack>
-        <Stack.Screen
-          name="index"
-          options={{
-            title: "Starter Base",
-            headerRight: () => <ThemeToggle />,
-          }}
-        />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
       </Stack>
       <PortalHost />
     </ThemeProvider>

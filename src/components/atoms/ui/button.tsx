@@ -1,4 +1,4 @@
-import { TextClassContext } from "@/components/atoms/ui/text";
+import { Text, TextClassContext } from "@/components/atoms/ui/text";
 import { cn } from "@/utils/cn";
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
@@ -79,7 +79,13 @@ function Button({ ref, className, variant, size, ...props }: ButtonProps) {
         ref={ref}
         role="button"
         {...props}
-      />
+      >
+        {typeof props.children === "function" ? (
+          props.children
+        ) : (
+          <Text>{props.children}</Text>
+        )}
+      </Pressable>
     </TextClassContext.Provider>
   );
 }
