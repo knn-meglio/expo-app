@@ -1,74 +1,119 @@
-import { AlertTriangle, Terminal } from "@/assets/icons";
-import { ThemeToggle } from "@/components/atoms/ThemeToggle";
+import { Info } from "@/assets/icons";
 import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/components/atoms/ui/alert";
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/atoms/ui/avatar";
 import { Button } from "@/components/atoms/ui/button";
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/atoms/ui/dialog";
-import { PlatformPressable } from "@react-navigation/elements";
-import { Text, View } from "react-native";
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/atoms/ui/card";
+import { Progress } from "@/components/atoms/ui/progress";
+import { Text } from "@/components/atoms/ui/text";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/atoms/ui/tooltip";
+import * as React from "react";
+import { View } from "react-native";
+import Animated, {
+  FadeInUp,
+  FadeOutDown,
+  LayoutAnimationConfig,
+} from "react-native-reanimated";
 
-export default function Index() {
+const GITHUB_AVATAR_URI =
+  "https://i.pinimg.com/originals/ef/a2/8d/efa28d18a04e7fa40ed49eeb0ab660db.jpg";
+
+export default function Screen() {
+  const [progress, setProgress] = React.useState(78);
+
+  function updateProgressValue() {
+    setProgress(Math.floor(Math.random() * 100));
+  }
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-xl font-bold text-blue-500">
-        Welcome to Nativewind!
-      </Text>
-
-      <ThemeToggle />
-
-      <PlatformPressable className="bg-blue-500 p-4 rounded-md">
-        <Text className="text-white">Click me</Text>
-      </PlatformPressable>
-
-      <Alert icon={Terminal} className="max-w-xl">
-        <AlertTitle>Heads up!</AlertTitle>
-        <AlertDescription>
-          You can use a terminal to run commands on your computer.
-        </AlertDescription>
-      </Alert>
-      <Alert icon={AlertTriangle} variant="destructive" className="max-w-xl">
-        <AlertTitle>Danger!</AlertTitle>
-        <AlertDescription>
-          High voltage. Do not touch. Risk of electric shock. Keep away from
-          children.
-        </AlertDescription>
-      </Alert>
-
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button>
-            <Text>Edit Profile</Text>
+    <View className="flex-1 justify-center items-center gap-5 p-6 bg-secondary/30">
+      <Card className="w-full max-w-sm p-6 rounded-2xl">
+        <CardHeader className="items-center">
+          <Avatar alt="Rick Sanchez's Avatar" className="w-24 h-24">
+            <AvatarImage source={{ uri: GITHUB_AVATAR_URI }} />
+            <AvatarFallback>
+              <Text>RS</Text>
+            </AvatarFallback>
+          </Avatar>
+          <View className="p-3" />
+          <CardTitle className="pb-2 text-center">Rick Sanchez</CardTitle>
+          <View className="flex-row">
+            <CardDescription className="text-base font-semibold">
+              Scientist
+            </CardDescription>
+            <Tooltip delayDuration={150}>
+              <TooltipTrigger className="px-2 pb-0.5 active:opacity-50">
+                <Info
+                  size={14}
+                  strokeWidth={2.5}
+                  className="w-4 h-4 text-foreground/70"
+                />
+              </TooltipTrigger>
+              <TooltipContent className="py-2 px-4 shadow">
+                <Text className="native:text-lg">Freelance</Text>
+              </TooltipContent>
+            </Tooltip>
+          </View>
+        </CardHeader>
+        <CardContent>
+          <View className="flex-row justify-around gap-3">
+            <View className="items-center">
+              <Text className="text-sm text-muted-foreground">Dimension</Text>
+              <Text className="text-xl font-semibold">C-137</Text>
+            </View>
+            <View className="items-center">
+              <Text className="text-sm text-muted-foreground">Age</Text>
+              <Text className="text-xl font-semibold">70</Text>
+            </View>
+            <View className="items-center">
+              <Text className="text-sm text-muted-foreground">Species</Text>
+              <Text className="text-xl font-semibold">Human</Text>
+            </View>
+          </View>
+        </CardContent>
+        <CardFooter className="flex-col gap-3 pb-0">
+          <View className="flex-row items-center overflow-hidden">
+            <Text className="text-sm text-muted-foreground">Productivity:</Text>
+            <LayoutAnimationConfig skipEntering>
+              <Animated.View
+                key={progress}
+                entering={FadeInUp}
+                exiting={FadeOutDown}
+                className="w-11 items-center"
+              >
+                <Text className="text-sm font-bold text-sky-600">
+                  {progress}%
+                </Text>
+              </Animated.View>
+            </LayoutAnimationConfig>
+          </View>
+          <Progress
+            value={progress}
+            className="h-2"
+            indicatorClassName="bg-sky-600"
+          />
+          <View />
+          <Button
+            variant="outline"
+            className="shadow shadow-foreground/5"
+            onPress={updateProgressValue}
+          >
+            <Text>Update</Text>
           </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
-            <DialogDescription>
-              Make changes to your profile here. Click save when you&apos;re
-              done.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button>
-                <Text>OK</Text>
-              </Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+        </CardFooter>
+      </Card>
     </View>
   );
 }
