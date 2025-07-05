@@ -1,4 +1,10 @@
+import { AlertTriangle, Terminal } from "@/assets/icons";
 import { ThemeToggle } from "@/components/atoms/ThemeToggle";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/atoms/ui/alert";
 import { Button } from "@/components/atoms/ui/button";
 import {
   Dialog,
@@ -25,6 +31,20 @@ export default function Index() {
       <PlatformPressable className="bg-blue-500 p-4 rounded-md">
         <Text className="text-white">Click me</Text>
       </PlatformPressable>
+
+      <Alert icon={Terminal} className="max-w-xl">
+        <AlertTitle>Heads up!</AlertTitle>
+        <AlertDescription>
+          You can use a terminal to run commands on your computer.
+        </AlertDescription>
+      </Alert>
+      <Alert icon={AlertTriangle} variant="destructive" className="max-w-xl">
+        <AlertTitle>Danger!</AlertTitle>
+        <AlertDescription>
+          High voltage. Do not touch. Risk of electric shock. Keep away from
+          children.
+        </AlertDescription>
+      </Alert>
 
       <Dialog>
         <DialogTrigger asChild>

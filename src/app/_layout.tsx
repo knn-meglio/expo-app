@@ -1,6 +1,9 @@
-import { NAV_THEME } from "@/components/atoms/Theme";
-import { useColorScheme } from "@/hooks/customs/useColorScheme";
 import "@/styles/globals.css";
+
+import { NAV_THEME } from "@/components/atoms/Theme";
+import { ThemeToggle } from "@/components/atoms/ThemeToggle";
+import { useColorScheme } from "@/hooks/customs/useColorScheme";
+import { setAndroidNavigationBar } from "@/utils/androidNavigationBar";
 import {
   DarkTheme,
   DefaultTheme,
@@ -11,7 +14,7 @@ import { PortalHost } from "@rn-primitives/portal";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import * as React from "react";
-import { Platform } from "react-native";
+import { Appearance, Platform } from "react-native";
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -22,36 +25,33 @@ const DARK_THEME: Theme = {
   colors: NAV_THEME.dark,
 };
 
-export { ErrorBoundary } from "expo-router";
+export {
+  // Catch any errors thrown by the Layout component.
+  ErrorBoundary,
+} from "expo-router";
+
+const usePlatformSpecificSetup = Platform.select({
+  web: useSetWebBackgroundClassName,
+  android: useSetAndroidNavigationBar,
+  default: noop,
+});
 
 export default function RootLayout() {
-  const hasMounted = React.useRef(false);
-  const { colorScheme, isDarkColorScheme } = useColorScheme();
-  const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
-
-  useIsomorphicLayoutEffect(() => {
-    if (hasMounted.current) {
-      return;
-    }
-
-    if (Platform.OS === "web") {
-      // Adds the background color to the html element to prevent white background on overscroll.
-      document.documentElement.classList.add("bg-background");
-    }
-    setIsColorSchemeLoaded(true);
-    hasMounted.current = true;
-  }, []);
-
-  if (!isColorSchemeLoaded) {
-    return null;
-  }
-
-  console.log(colorScheme);
+  usePlatformSpecificSetup();
+  const { isDarkColorScheme } = useColorScheme();
 
   return (
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-      <Stack />
+      <Stack>
+        <Stack.Screen
+          name="index"
+          options={{
+            title: "Starter Base",
+            headerRight: () => <ThemeToggle />,
+          }}
+        />
+      </Stack>
       <PortalHost />
     </ThemeProvider>
   );
@@ -61,3 +61,18 @@ const useIsomorphicLayoutEffect =
   Platform.OS === "web" && typeof window === "undefined"
     ? React.useEffect
     : React.useLayoutEffect;
+
+function useSetWebBackgroundClassName() {
+  useIsomorphicLayoutEffect(() => {
+    // Adds the background color to the html element to prevent white background on overscroll.
+    document.documentElement.classList.add("bg-background");
+  }, []);
+}
+
+function useSetAndroidNavigationBar() {
+  React.useLayoutEffect(() => {
+    setAndroidNavigationBar(Appearance.getColorScheme() ?? "light");
+  }, []);
+}
+
+function noop() {}
