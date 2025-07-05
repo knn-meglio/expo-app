@@ -46,6 +46,7 @@
     "eslint-config-expo": "~9.2.0",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.17",
+    "tailwindcss-animate": "^1.0.7",
     "typescript": "~5.8.3"
   },
   "private": true
