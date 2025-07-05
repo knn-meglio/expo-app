@@ -7,6 +7,7 @@ import {
   Theme,
   ThemeProvider,
 } from "@react-navigation/native";
+import { PortalHost } from "@rn-primitives/portal";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import * as React from "react";
@@ -45,10 +46,13 @@ export default function RootLayout() {
     return null;
   }
 
+  console.log(colorScheme);
+
   return (
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
       <Stack />
+      <PortalHost />
     </ThemeProvider>
   );
 }
