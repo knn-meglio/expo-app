@@ -8,7 +8,7 @@ export default function Index() {
         Welcome to Nativewind!
       </Text>
       <PlatformPressable className="bg-blue-500 p-4 rounded-md">
-        <Text>Click me</Text>
+        <Text className="text-white">Click me</Text>
       </PlatformPressable>
     </View>
   );
