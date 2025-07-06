@@ -38,7 +38,7 @@ const HomeScreen = () => {
           className="flex-row items-center justify-start gap-4 py-6"
         >
           <Image
-            source={require("../../assets/images/react-logo.png")}
+            source={require("../../../assets/images/react-logo.png")}
             className="w-12 h-12 p-1 border border-foreground/10 rounded-full bg-gray-900"
           />
           <ThemedText className="text-lg font-bold">
