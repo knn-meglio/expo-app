@@ -9,6 +9,7 @@ import {
   MessageCircle,
   MoonStar,
   Pencil,
+  Plus,
   Search,
   Settings,
   Sun,
@@ -31,6 +32,7 @@ iconWithClassName(AlertTriangle);
 iconWithClassName(X);
 iconWithClassName(Check);
 iconWithClassName(BellRing);
+iconWithClassName(Plus);
 export {
   AlertTriangle,
   BellRing,
@@ -41,6 +43,7 @@ export {
   MessageCircle,
   MoonStar,
   Pencil,
+  Plus,
   Search,
   Settings,
   Sun,

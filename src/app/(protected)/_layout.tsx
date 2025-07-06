@@ -148,6 +148,12 @@ export default function Layout() {
           },
         }}
       />
+      <Tabs.Screen
+        name="camera"
+        options={{
+          href: null,
+        }}
+      />
     </Tabs>
   );
 }

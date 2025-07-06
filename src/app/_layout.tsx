@@ -44,6 +44,13 @@ export default function RootLayout() {
       <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
+        <Stack.Screen
+          name="modal"
+          options={{
+            presentation: "modal",
+            headerShown: false,
+          }}
+        />
       </Stack>
       <PortalHost />
     </ThemeProvider>
