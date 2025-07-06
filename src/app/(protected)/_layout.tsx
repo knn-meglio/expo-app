@@ -1,40 +1,149 @@
-import { Home, User } from "@/assets/icons";
+import { BellRing, Home, MessageCircle, User } from "@/assets/icons";
+import HapticTab from "@/components/atoms/HapticTab";
+import BlurTabbarBackground from "@/components/atoms/ios/TabbarBackground.ios";
 import { ThemeToggle } from "@/components/atoms/ThemeToggle";
+import { ThemedText } from "@/components/atoms/ui/text";
+import { useColorScheme } from "@/hooks/customs/useColorScheme";
 import { cn } from "@/utils/cn";
 import { Tabs } from "expo-router";
+import { Platform } from "react-native";
 
 export default function Layout() {
+  const { isDarkColorScheme } = useColorScheme();
+
   return (
     <Tabs
       screenOptions={{
         headerRight: () => <ThemeToggle />,
-        // tabBarActiveTintColor: "",
-        // tabBarInactiveTintColor: "gray.500",
-        // tabBarStyle: {
-        //   backgroundColor: "gray.900",
-        //   borderTopWidth: 1,
-        //   borderTopColor: "gray.200",
-        // },
+        animation: "fade",
+        tabBarButton: HapticTab,
+        tabBarBackground: Platform.select({
+          ios: BlurTabbarBackground,
+          default: undefined,
+        }),
+        tabBarStyle: Platform.select({
+          ios: {
+            position: "absolute",
+          },
+          default: {},
+        }),
+        ...(Platform.OS === "web" && {
+          tabBarPosition: "left",
+          tabBarVariant: "material",
+        }),
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          tabBarLabel: ({ focused }) => (
+            <ThemedText
+              className={cn("text-gray-500 text-xs", {
+                "text-gray-900": focused,
+                "text-gray-400": isDarkColorScheme,
+                "text-white": focused && isDarkColorScheme,
+              })}
+            >
+              Home
+            </ThemedText>
+          ),
           tabBarIcon: ({ size, focused }) => {
             return (
-              <Home className={cn(focused && "text-foreground")} size={size} />
+              <Home
+                className={cn("text-gray-500", {
+                  "text-gray-900": focused,
+                  "text-gray-400": isDarkColorScheme,
+                  "text-white": focused && isDarkColorScheme,
+                })}
+                size={size}
+              />
             );
           },
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="chat"
         options={{
-          title: "Profile",
+          tabBarLabel: ({ focused }) => (
+            <ThemedText
+              className={cn("text-gray-500 text-xs", {
+                "text-gray-900": focused,
+                "text-gray-400": isDarkColorScheme,
+                "text-white": focused && isDarkColorScheme,
+              })}
+            >
+              Chat
+            </ThemedText>
+          ),
           tabBarIcon: ({ size, focused }) => {
             return (
-              <User className={cn(focused && "text-foreground")} size={size} />
+              <MessageCircle
+                className={cn("text-gray-500", {
+                  "text-gray-900": focused,
+                  "text-gray-400": isDarkColorScheme,
+                  "text-white": focused && isDarkColorScheme,
+                })}
+                size={size}
+              />
+            );
+          },
+          tabBarBadge: 4,
+        }}
+      />
+      <Tabs.Screen
+        name="notification"
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <ThemedText
+              className={cn("text-gray-500 text-xs", {
+                "text-gray-900": focused,
+                "text-gray-400": isDarkColorScheme,
+                "text-white": focused && isDarkColorScheme,
+              })}
+            >
+              Notifications
+            </ThemedText>
+          ),
+          tabBarIcon: ({ size, focused }) => {
+            return (
+              <BellRing
+                className={cn("text-gray-500", {
+                  "text-gray-900": focused,
+                  "text-gray-400": isDarkColorScheme,
+                  "text-white": focused && isDarkColorScheme,
+                })}
+                size={size}
+              />
+            );
+          },
+          tabBarBadge: 4,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          headerShown: false,
+          tabBarLabel: ({ focused }) => (
+            <ThemedText
+              className={cn("text-gray-500 text-xs", {
+                "text-gray-900": focused,
+                "text-gray-400": isDarkColorScheme,
+                "text-white": focused && isDarkColorScheme,
+              })}
+            >
+              Profile
+            </ThemedText>
+          ),
+          tabBarIcon: ({ size, focused }) => {
+            return (
+              <User
+                className={cn("text-gray-500", {
+                  "text-gray-900": focused,
+                  "text-gray-400": isDarkColorScheme,
+                  "text-white": focused && isDarkColorScheme,
+                })}
+                size={size}
+              />
             );
           },
         }}

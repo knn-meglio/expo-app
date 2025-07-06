@@ -14,7 +14,7 @@ import {
   CardTitle,
 } from "@/components/atoms/ui/card";
 import { Progress } from "@/components/atoms/ui/progress";
-import { Text } from "@/components/atoms/ui/text";
+import { ThemedText } from "@/components/atoms/ui/text";
 import {
   Tooltip,
   TooltipContent,
@@ -45,7 +45,7 @@ export default function Screen() {
           <Avatar alt="Rick Sanchez's Avatar" className="w-24 h-24">
             <AvatarImage source={{ uri: GITHUB_AVATAR_URI }} />
             <AvatarFallback>
-              <Text>RS</Text>
+              <ThemedText>RS</ThemedText>
             </AvatarFallback>
           </Avatar>
           <View className="p-3" />
@@ -63,7 +63,7 @@ export default function Screen() {
                 />
               </TooltipTrigger>
               <TooltipContent className="py-2 px-4 shadow">
-                <Text className="native:text-lg">Freelance</Text>
+                <ThemedText className="native:text-lg">Freelance</ThemedText>
               </TooltipContent>
             </Tooltip>
           </View>
@@ -71,22 +71,30 @@ export default function Screen() {
         <CardContent>
           <View className="flex-row justify-around gap-3">
             <View className="items-center">
-              <Text className="text-sm text-muted-foreground">Dimension</Text>
-              <Text className="text-xl font-semibold">C-137</Text>
+              <ThemedText className="text-sm text-muted-foreground">
+                Dimension
+              </ThemedText>
+              <ThemedText className="text-xl font-semibold">C-137</ThemedText>
             </View>
             <View className="items-center">
-              <Text className="text-sm text-muted-foreground">Age</Text>
-              <Text className="text-xl font-semibold">70</Text>
+              <ThemedText className="text-sm text-muted-foreground">
+                Age
+              </ThemedText>
+              <ThemedText className="text-xl font-semibold">70</ThemedText>
             </View>
             <View className="items-center">
-              <Text className="text-sm text-muted-foreground">Species</Text>
-              <Text className="text-xl font-semibold">Human</Text>
+              <ThemedText className="text-sm text-muted-foreground">
+                Species
+              </ThemedText>
+              <ThemedText className="text-xl font-semibold">Human</ThemedText>
             </View>
           </View>
         </CardContent>
         <CardFooter className="flex-col gap-3 pb-0">
           <View className="flex-row items-center overflow-hidden">
-            <Text className="text-sm text-muted-foreground">Productivity:</Text>
+            <ThemedText className="text-sm text-muted-foreground">
+              Productivity:
+            </ThemedText>
             <LayoutAnimationConfig skipEntering>
               <Animated.View
                 key={progress}
@@ -94,9 +102,9 @@ export default function Screen() {
                 exiting={FadeOutDown}
                 className="w-11 items-center"
               >
-                <Text className="text-sm font-bold text-sky-600">
+                <ThemedText className="text-sm font-bold text-sky-600">
                   {progress}%
-                </Text>
+                </ThemedText>
               </Animated.View>
             </LayoutAnimationConfig>
           </View>
@@ -111,12 +119,12 @@ export default function Screen() {
             className="shadow shadow-foreground/5"
             onPress={updateProgressValue}
           >
-            <Text>Update</Text>
+            <ThemedText>Update</ThemedText>
           </Button>
 
-          <Link href="/profile" asChild>
+          <Link href="/(protected)" asChild>
             <TouchableOpacity>
-              <Text>Profile</Text>
+              <ThemedText>Profile</ThemedText>
             </TouchableOpacity>
           </Link>
         </CardFooter>

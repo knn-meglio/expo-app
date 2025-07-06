@@ -1,6 +1,7 @@
 import { iconWithClassName } from "@/utils/iconWithClassName";
 import {
   AlertTriangle,
+  BellRing,
   Check,
   ChevronLeft,
   Home,
@@ -29,8 +30,10 @@ iconWithClassName(Terminal);
 iconWithClassName(AlertTriangle);
 iconWithClassName(X);
 iconWithClassName(Check);
+iconWithClassName(BellRing);
 export {
   AlertTriangle,
+  BellRing,
   Check,
   ChevronLeft,
   Home,

@@ -1,13 +1,13 @@
-import { Text } from "@/components/atoms/ui/text";
+import { ThemedText } from "@/components/atoms/ui/text";
 import React from "react";
 import { View } from "react-native";
 
-const ProfileScreen = () => {
+const ChatScreen = () => {
   return (
     <View className="flex-1 items-center justify-center">
-      <Text>Profile Screen</Text>
+      <ThemedText>Chat Screen</ThemedText>
     </View>
   );
 };
 
-export default ProfileScreen;
+export default ChatScreen;
