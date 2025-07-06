@@ -1,7 +1,9 @@
 import "@/styles/globals.css";
 
 import { NAV_THEME } from "@/components/atoms/Theme";
+import SplashScreenHandler from "@/components/molecules/SplashScreen";
 import { useColorScheme } from "@/hooks/customs/useColorScheme";
+import AuthProvider from "@/providers/AuthProvider";
 import { setAndroidNavigationBar } from "@/utils/androidNavigationBar";
 import {
   DarkTheme,
@@ -40,11 +42,15 @@ export default function RootLayout() {
   const { isDarkColorScheme } = useColorScheme();
 
   return (
-    <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-      <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-      <Stack screenOptions={{ headerShown: false }} />
-      <PortalHost />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
+        <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
+        <SplashScreenHandler>
+          <Stack screenOptions={{ headerShown: false, animation: "none" }} />
+        </SplashScreenHandler>
+        <PortalHost />
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 

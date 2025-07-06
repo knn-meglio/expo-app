@@ -14,6 +14,7 @@ import {
   FormLabel,
 } from "@/components/atoms/ui/form";
 import { Input } from "@/components/atoms/ui/input";
+import { useAuth } from "@/hooks/customs/useAuth";
 import { LoginForm, LoginSchema } from "@/libs/validations/loginSchema";
 import { cn } from "@/utils/cn";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,16 +25,19 @@ import { SafeAreaView, Text, View } from "react-native";
 
 const LoginScreen = () => {
   const router = useRouter();
+  const { login } = useAuth();
   const form = useForm<LoginForm>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: "user@mail.com",
+      password: "123123123",
     },
   });
 
   const onSubmit = (data: LoginForm) => {
     console.log("data => ", data);
+    login(data.email);
+
     // router.push("/(tabs)");
     // Toast.show({
     //   type: "success",
