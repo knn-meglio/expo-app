@@ -5,7 +5,7 @@ import { Text as RNText } from "react-native";
 
 const TextClassContext = React.createContext<string | undefined>(undefined);
 
-function ThemedText({
+function Text({
   className,
   asChild = false,
   ...props
@@ -27,4 +27,4 @@ function ThemedText({
   );
 }
 
-export { TextClassContext, ThemedText };
+export { Text, TextClassContext };

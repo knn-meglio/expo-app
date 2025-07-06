@@ -1,4 +1,5 @@
 import { Info } from "@/assets/icons";
+import { ThemedText } from "@/components/atoms/ThemedText";
 import {
   Avatar,
   AvatarFallback,
@@ -14,7 +15,6 @@ import {
   CardTitle,
 } from "@/components/atoms/ui/card";
 import { Progress } from "@/components/atoms/ui/progress";
-import { ThemedText } from "@/components/atoms/ui/text";
 import {
   Tooltip,
   TooltipContent,

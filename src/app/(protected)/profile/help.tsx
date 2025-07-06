@@ -1,3 +1,4 @@
+import { ThemedText } from "@/components/atoms/ThemedText";
 import { Button } from "@/components/atoms/ui/button";
 import {
   Card,
@@ -5,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/atoms/ui/card";
-import { ThemedText } from "@/components/atoms/ui/text";
 import React from "react";
 import { ScrollView, View } from "react-native";
 

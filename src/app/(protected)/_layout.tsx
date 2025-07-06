@@ -1,8 +1,8 @@
 import { BellRing, Home, MessageCircle, User } from "@/assets/icons";
 import HapticTab from "@/components/atoms/HapticTab";
-import BlurTabbarBackground from "@/components/atoms/ios/TabbarBackground.ios";
+import BlurTabbarBackground from "@/components/atoms/TabbarBackground";
 import { ThemeToggle } from "@/components/atoms/ThemeToggle";
-import { ThemedText } from "@/components/atoms/ui/text";
+import { ThemedText } from "@/components/atoms/ThemedText";
 import { useColorScheme } from "@/hooks/customs/useColorScheme";
 import { cn } from "@/utils/cn";
 import { Tabs } from "expo-router";

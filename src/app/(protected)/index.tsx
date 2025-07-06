@@ -1,4 +1,4 @@
-import { ThemedText } from "@/components/atoms/ui/text";
+import { ThemedText } from "@/components/atoms/ThemedText";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import React, { useState } from "react";
 import {
