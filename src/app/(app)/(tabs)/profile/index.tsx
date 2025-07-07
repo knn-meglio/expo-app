@@ -8,7 +8,7 @@ import {
 } from "@/components/atoms/ui/card";
 import { useAuth } from "@/hooks/customs/useAuth";
 import React from "react";
-import { ScrollView, View } from "react-native";
+import { Alert, ScrollView, View } from "react-native";
 
 const ProfileScreen = () => {
   const { logout } = useAuth();
@@ -68,7 +68,16 @@ const ProfileScreen = () => {
       </View>
 
       <View className="mt-4">
-        <Button onPress={() => logout()}>Logout</Button>
+        <Button
+          onPress={() =>
+            Alert.alert("Logout", "Are you sure you want to logout?", [
+              { text: "Cancel", style: "cancel" },
+              { text: "Logout", style: "destructive", onPress: () => logout() },
+            ])
+          }
+        >
+          Logout
+        </Button>
       </View>
     </ScrollView>
   );
