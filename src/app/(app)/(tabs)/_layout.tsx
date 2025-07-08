@@ -47,7 +47,7 @@ export default function Layout() {
                 "text-white": focused && isDarkColorScheme,
               })}
             >
-              Home
+              Media
             </ThemedText>
           ),
           tabBarIcon: ({ size, focused }) => {
