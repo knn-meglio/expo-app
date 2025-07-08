@@ -13,12 +13,12 @@ const MediaSkeleton = () => {
     >
       <View className="bg-white dark:bg-gray-800 px-6 pt-10 pb-6">
         <View className="w-full mb-8">
-          <Skeleton className="w-full h-5" />
+          <Skeleton className="w-full h-5 bg-gray-200 dark:bg-gray-700" />
         </View>
         <View className="flex-row items-center justify-between w-full">
           <View className="flex-row items-center gap-2">
-            <Skeleton className="w-10 h-4 rounded-full" />
-            <Skeleton className="w-20 h-4 rounded-full" />
+            <Skeleton className="w-10 h-4 rounded-full bg-gray-200 dark:bg-gray-700" />
+            <Skeleton className="w-20 h-4 rounded-full bg-gray-200 dark:bg-gray-700" />
           </View>
           <Skeleton className="w-6 h-4 rounded-full" />
         </View>
@@ -29,7 +29,7 @@ const MediaSkeleton = () => {
             key={index}
             className="bg-white dark:bg-gray-800 rounded-lg mx-3 flex-row overflow-hidden mb-3 items-start"
           >
-            <Skeleton className="w-[170px] h-32 rounded-l-lg" />
+            <Skeleton className="w-[170px] h-32 rounded-l-lg bg-gray-100 dark:bg-gray-700" />
             <View className="flex-row items-start justify-between flex-1 p-4 h-full">
               <View className="flex-1 space-y-2">
                 <Skeleton className="h-4 w-3/4 bg-gray-200 dark:bg-gray-700 mb-2" />

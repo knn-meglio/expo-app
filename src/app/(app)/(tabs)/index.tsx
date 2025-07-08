@@ -6,15 +6,20 @@ import { Skeleton } from "@/components/atoms/ui/skeleton";
 import ParallaxScrollView from "@/components/molecules/ParallelScrollView";
 import MediaCard from "@/components/organisms/media/Card";
 import MediaSkeleton from "@/components/organisms/skeleton/MediaSkeleton";
+import { cn } from "@/utils/cn";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
-import { Link } from "expo-router";
 import React, { useState } from "react";
 import { TouchableOpacity, View } from "react-native";
 
 const HomeScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const height = useBottomTabBarHeight();
+
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+  };
 
   const handleLoadMore = () => {
     setRefreshing(true);
@@ -55,18 +60,18 @@ const HomeScreen = () => {
               Business
             </ThemedText>
           </View>
-          <TouchableOpacity>
-            <Star size={20} className="text-gray-400" />
+          <TouchableOpacity onPress={toggleFavorite}>
+            <Star
+              size={20}
+              className={cn("text-gray-400", isFavorite && "text-yellow-400")}
+              {...(isFavorite && { fill: "#facc15" })}
+            />
           </TouchableOpacity>
         </View>
       </ThemedView>
       <View>
         {[...Array(20)].map((_, index) => (
-          <Link href="/media/1" key={index} asChild>
-            <TouchableOpacity>
-              <MediaCard loading={refreshing} />
-            </TouchableOpacity>
-          </Link>
+          <MediaCard key={index} />
         ))}
       </View>
     </ParallaxScrollView>
