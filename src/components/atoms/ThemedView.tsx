@@ -18,10 +18,14 @@ export function ThemedView({
 
   return (
     <View
-      className={cn("flex-1", className, {
-        "bg-gray-900": isDarkColorScheme,
-        "bg-gray-200": !isDarkColorScheme,
-      })}
+      className={cn(
+        "flex-1",
+        {
+          "bg-gray-900": isDarkColorScheme,
+          "bg-gray-200": !isDarkColorScheme,
+        },
+        className
+      )}
       {...rest}
     />
   );

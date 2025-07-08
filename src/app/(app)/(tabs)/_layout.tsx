@@ -36,6 +36,9 @@ export default function Layout() {
       <Tabs.Screen
         name="index"
         options={{
+          headerTitle: () => (
+            <ThemedText className="text-2xl font-bold">LENZ</ThemedText>
+          ),
           tabBarLabel: ({ focused }) => (
             <ThemedText
               className={cn("text-gray-500 text-xs", {

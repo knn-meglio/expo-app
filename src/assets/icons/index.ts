@@ -12,7 +12,9 @@ import {
   Plus,
   Search,
   Settings,
+  Star,
   Sun,
+  Tags,
   Terminal,
   User,
   X,
@@ -33,6 +35,8 @@ iconWithClassName(X);
 iconWithClassName(Check);
 iconWithClassName(BellRing);
 iconWithClassName(Plus);
+iconWithClassName(Tags);
+iconWithClassName(Star);
 export {
   AlertTriangle,
   BellRing,
@@ -46,7 +50,9 @@ export {
   Plus,
   Search,
   Settings,
+  Star,
   Sun,
+  Tags,
   Terminal,
   User,
   X,

@@ -6,7 +6,7 @@ export default function ProtectedLayout() {
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Protected guard={isLoggedIn}>
+      <Stack.Protected guard={!isLoggedIn}>
         <Stack.Screen name="(tabs)" options={{ animation: "none" }} />
         <Stack.Screen name="modal" options={{ presentation: "modal" }} />
       </Stack.Protected>
